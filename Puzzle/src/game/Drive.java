@@ -8,6 +8,7 @@ public class Drive {
 		f.showIt();
 		while(true){
 		System.out.println("hej");
+		HEJ;
 		}
 	}
 }
