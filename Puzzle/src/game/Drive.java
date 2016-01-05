@@ -10,6 +10,9 @@ public class Drive {
 		System.out.println("hej");
 		HEJ;
 		MATHIAS;
+		
+		
+		\\\Hej Simon;
 		}
 	}
 }
