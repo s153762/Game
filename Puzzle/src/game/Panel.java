@@ -2,6 +2,7 @@ package game;
 
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,11 +11,15 @@ import game.Model;
 
 public class Panel extends JPanel{
 private Model model;
+private int number;
+
 	
 	public Panel(){
 		model = new Model(this);
 		GridLayout gLay = new GridLayout(3,3);
 		this.setLayout(gLay);
+		this.number = 3;
+		
 		
 		JLabel number1 = new JLabel("1");
 		JLabel number2 = new JLabel("2");
@@ -26,7 +31,8 @@ private Model model;
 		JLabel number8 = new JLabel("8");
 		JLabel number0 = new JLabel(" ");
 		
-		this.add(number1, "Center");
+		
+		this.add(number1, "East");
 		this.add(number2, "Center");
 		this.add(number3, "Center");
 		this.add(number4, "Center");
