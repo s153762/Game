@@ -11,9 +11,8 @@ public class Frame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(str);
 		
-		Panel panel = new Panel();
+		Panel panel = new Panel(10);
 		this.getContentPane().add(panel, "Center");
-
 	}
 	
 	public void showIt(){

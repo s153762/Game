@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+import java.awt.*;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
@@ -14,41 +16,23 @@ private Model model;
 private int number;
 
 	
-	public Panel(){
+	public Panel(int number){
 		model = new Model(this);
-		GridLayout gLay = new GridLayout(3,3);
+		GridLayout gLay = new GridLayout(number,number);
 		this.setLayout(gLay);
-		this.number = 3;
+		this.number = number;
+		JLabel[][] gameGrid = new JLabel[number][number];
 		
-		
-		
-		JLabel number1 = new JLabel("1");
-		number1.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number2 = new JLabel("2");
-		number2.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number3 = new JLabel("3");
-		number3.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number4 = new JLabel("4");
-		number4.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number5 = new JLabel("5");
-		number5.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number6 = new JLabel("6");
-		number6.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number7 = new JLabel("7");
-		number7.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number8 = new JLabel("8");
-		number8.setHorizontalAlignment(JLabel.CENTER);
-		JLabel number0 = new JLabel();
-		
-		this.add(number2, "Center");
-		this.add(number1, "Ceter");
-		this.add(number3, "Center");
-		this.add(number4, "Center");
-		this.add(number5, "Center");
-		this.add(number6, "Center");
-		this.add(number7, "Center");
-		this.add(number8, "Center");
-		this.add(number0, "Center");
+		int temp = 1;
+		for(int i = 0; i<number;i++){
+			for(int j = 0;j<number;j++){
+				gameGrid[i][j] = new JLabel(""+temp);
+				gameGrid[i][j].setHorizontalAlignment(JLabel.CENTER);
+				this.add(gameGrid[i][j], "Center");
+				temp++;
+			}
+		}
+		gameGrid[number-1][number-1].setText("");
 	}
 	
 }
