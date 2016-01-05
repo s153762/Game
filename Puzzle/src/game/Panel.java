@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.Listener;
 import game.Model;
 
 public class Panel extends JPanel{
@@ -33,6 +34,8 @@ private int number;
 			}
 		}
 		gameGrid[number-1][number-1].setText("");
+		
+
 	}
 	
 }
