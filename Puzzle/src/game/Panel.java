@@ -21,6 +21,7 @@ private int number;
 		model = new Model(this);
 		GridLayout gLay = new GridLayout(number,number);
 		this.setLayout(gLay);
+		
 		this.number = number;
 		JLabel[][] gameGrid = new JLabel[number][number];
 		
