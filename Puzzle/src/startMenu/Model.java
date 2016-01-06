@@ -1,11 +1,11 @@
 package startMenu;
 
-import startMenu.Panel;
+import startMenu.MenuPanel;
 
 public class Model {
-	private Panel view;
+	private MenuPanel view;
 	
-	public Model(Panel view){
+	public Model(MenuPanel view){
 		this.view = view;
 		
 	}

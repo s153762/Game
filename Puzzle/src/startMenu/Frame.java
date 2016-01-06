@@ -2,7 +2,7 @@ package startMenu;
 
 import javax.swing.*;
 
-import startMenu.Panel;
+import startMenu.MenuPanel;
 
 public class Frame extends JFrame{
 	public Frame(String str){
@@ -11,8 +11,8 @@ public class Frame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(str);
 		
-		Panel panel = new Panel();
-		this.getContentPane().add(panel, "Center");
+		MenuPanel panel = new MenuPanel();
+		this.getContentPane().add(new MenuPanel());
 	}
 	
 	public void showIt(){
