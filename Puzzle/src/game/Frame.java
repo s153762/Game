@@ -15,27 +15,23 @@ import game.*;
 
 public class Frame extends JFrame {
 
-	private int n = 30;
+	private int n = 3;
 	private Panel panel;
 	private MenuPanel menuPanel;
 	private InGamePanel inGamePanel;
 	private Listener list;
-	public static int size = 500;
+	public static double size = 600;
 	
 	public Frame(String str){
-		this.setSize(size, size);
-		this.setLocation(200,100);
+		this.setSize((int) (size*1.25),(int) size);
+		this.setLocation(100,50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(str);	
+		this.setLayout(new BorderLayout());
 		
 		this.panel = new Panel(this.n);
-		this.getContentPane().add(panel, "Center");
-		
 		this.menuPanel = new MenuPanel(this);
-		this.getContentPane().add(menuPanel, "Center");
-		
 		this.inGamePanel = new InGamePanel();
-		this.getContentPane().add(inGamePanel, "South");
 		
 		Listener list = new Listener(panel);
 		this.addKeyListener(list);
@@ -53,6 +49,9 @@ public class Frame extends JFrame {
 		this.getContentPane().removeAll();
 		this.getContentPane().add(inGamePanel, "South");
 		this.getContentPane().add(panel, "Center");
+		//this.getContentPane().add(new JLabel(),"North");
+		//this.getContentPane().add(new JLabel(), "East");
+		//this.getContentPane().add(new JLabel(), "West");
 		this.addKeyListener(list);
 	}
 	

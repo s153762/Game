@@ -51,7 +51,7 @@ public class Panel extends JPanel{
 	}
 	
 	public Float FontSize(){
-		double fontSize = Frame.size/(n*2);
+		double fontSize = Frame.size/(n*3);
 		return (float) fontSize; 
 	}
 	
@@ -67,6 +67,16 @@ public class Panel extends JPanel{
 		this.x=movex;
 		
 		}
+	
+	public void youWon(){
+		System.out.println("You won!");
+		this.removeAll();
+		JLabel won = new JLabel("You won!");
+		won.setHorizontalAlignment(JLabel.CENTER);
+		won.setFont (getFont ().deriveFont (100f));
+		this.add(won, "Center");
+		System.out.println("again");
+	}
 	
 	public int getN() {
 		return n;

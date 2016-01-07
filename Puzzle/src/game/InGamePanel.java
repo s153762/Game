@@ -16,18 +16,19 @@ public class InGamePanel extends JPanel{
 	public InGamePanel(){
 		this.setLayout(new BorderLayout());
 		
+		ButtonListener buttonList = new ButtonListener();
+		
 		JButton pause = new JButton("Pause");
 		this.add(pause, "West");
-		//playButton.addActionListener(buttonList);
+		pause.addActionListener(buttonList);
 		
 		JLabel timer = new JLabel("Timer");
 		timer.setHorizontalAlignment(JLabel.CENTER);
 		this.add(timer, "Center");
-		//settingsButton.addActionListener(buttonList);
 	
-		JButton exitButton = new JButton("Exit");
-		this.add(exitButton, "East");
-		//exitButton.addActionListener(buttonList);
+		JButton backButton = new JButton("Back to menu");
+		this.add(backButton, "East");
+		backButton.addActionListener(buttonList);
 	}
 }
 

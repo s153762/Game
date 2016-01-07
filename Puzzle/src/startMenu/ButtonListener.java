@@ -11,6 +11,9 @@ public class ButtonListener implements ActionListener{
 		this.frame = frame;
 	}
 	
+	public ButtonListener(){
+	}
+	
 	public void actionPerformed(ActionEvent event){
 		String buttonPressed = event.getActionCommand();
 		
@@ -31,8 +34,15 @@ public class ButtonListener implements ActionListener{
 			case "Exit": 
 				System.out.println("Exit");
 			break;
+			
+			case "Pause":
+				System.out.println("Pause");
+			break;
+			
+			case "Back to menu":
+				System.out.println("Back");
+			break;
 		}
-		System.out.println("not");
 	}
 	
 }

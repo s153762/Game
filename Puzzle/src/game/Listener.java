@@ -28,7 +28,7 @@ public class Listener implements KeyListener{
 				this.y = panel.getY();
 				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
 					if(model.checkWinCondition())
-						System.out.println("You won!");
+						panel.youWon();
 				}
 			}
 			break;
@@ -45,7 +45,7 @@ public class Listener implements KeyListener{
 				this.y = panel.getY();
 				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
 					if(model.checkWinCondition())
-						System.out.println("You won!");
+						panel.youWon();
 				}
 			}
 	
