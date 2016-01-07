@@ -12,6 +12,9 @@ public class Model {
 	
 	public Model(Panel view){
 		this.panel = view;
+		this.x = panel.getX();
+		this.y = panel.getY();
+		this.n= panel.getN();
 	}
 	
 public boolean checkWinCondition(){
@@ -42,37 +45,35 @@ public boolean checkWinCondition(){
 	}
 
 public void shuffle(){
+	System.out.println(n);
 	for (int i = 0; i<n*100;i++){
-	int c;
 	Random random = new Random();
-	c= random.nextInt(4);
-	
+	int c= random.nextInt(4);
+	System.out.println("shuffle");
 	switch(c){
 	case 0:
 		if (!(y>n-2)){
 			panel.updateArray(y, x, y+1, x);
-			y++;
 		}
 		break;
 	case 1:
 		if (!(y<1)){
 			panel.updateArray(y, x, y-1, x);
-			y--;
 		}
 		break;
 	case 2:
 		if (!(x>n-2)){
 			panel.updateArray(y, x, y, x+1);
-			x++;	
 		}
 		break;
 	case 3:
 		if (!(x<1)){
 			panel.updateArray(y, x, y, x-1);
-			x--;
 		}
 		break;
 	}
+	this.x = panel.getX();
+	this.y = panel.getY();
 	}
 }
 

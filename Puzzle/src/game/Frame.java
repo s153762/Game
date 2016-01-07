@@ -11,24 +11,20 @@ import game.*;
 public class Frame extends JFrame {
 
 	private int n;
-	private int x;
-	private int y;
 	private Panel panel;
-	private Model model;
 	
-	public Frame(String str, int n){
+	public Frame(String str){
 		this.setSize(500, 500);
 		this.setLocation(200,100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(str);	
-		this.n = n;
-		this.panel = new Panel(n);
-		this.model = new Model(panel);
+		this.n = 5;
+		this.panel = new Panel(this.n);
+		
+		this.getContentPane().add(panel, "Center");
+		
 		Listener list = new Listener(panel);
 		this.addKeyListener(list);
-		x = n-1;
-		y=x;
-		this.getContentPane().add(panel, "Center");
 	
 	}
 

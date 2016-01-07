@@ -20,12 +20,24 @@ public class Panel extends JPanel{
 	private int x;
 	private int y;
 
+	public int getN() {
+		return n;
+	}
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
+
 	private JLabel[][] gameGrid;
 	
 	public Panel(int n){
-		this.model = new Model(this);
 		
+		this.x = n-1;
+		this.y = n-1;
 		this.n = n;
+		this.model = new Model(this);
 		this.setBackground(Color.white);
 		
 		GridLayout gLay = new GridLayout(n,n);
@@ -56,13 +68,6 @@ public class Panel extends JPanel{
 		this.PuzzleArray()[movey][movex].setText("");
 		this.y=movey;
 		this.x=movex;
-		for(int i = 0; i<n;i++){
-			for(int j = 0;j<n;j++){
-				this.remove(gameGrid[i][j]);
-				this.add(gameGrid[i][j], "Center");
-			}
 		}
-		
-	}
 	
 }
