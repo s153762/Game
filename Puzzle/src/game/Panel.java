@@ -39,7 +39,7 @@ public class Panel extends JPanel{
 			for(int j = 0;j<n;j++){
 				gameGrid[i][j] = new JLabel(""+temp);
 				gameGrid[i][j].setHorizontalAlignment(JLabel.CENTER);
-				gameGrid[i][j].setFont (getFont ().deriveFont (64.0f));
+				gameGrid[i][j].setFont (getFont ().deriveFont (this.FontSize()));
 				gameGrid[i][j].setBorder(new LineBorder(Color.BLACK));
 				this.add(gameGrid[i][j], "Center");
 				temp++;
@@ -48,6 +48,11 @@ public class Panel extends JPanel{
 		gameGrid[n-1][n-1].setText("");
 		model.shuffle();
 		
+	}
+	
+	public Float FontSize(){
+		double fontSize = Frame.size/(n*2);
+		return (float) fontSize; 
 	}
 	
 	public JLabel[][] PuzzleArray(){

@@ -15,14 +15,15 @@ import game.*;
 
 public class Frame extends JFrame {
 
-	private int n = 3;
+	private int n = 30;
 	private Panel panel;
 	private MenuPanel menuPanel;
 	private InGamePanel inGamePanel;
 	private Listener list;
+	public static int size = 500;
 	
 	public Frame(String str){
-		this.setSize(500, 500);
+		this.setSize(size, size);
 		this.setLocation(200,100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(str);	

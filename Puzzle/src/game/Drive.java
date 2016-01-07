@@ -6,7 +6,7 @@ public class Drive {
 	
 	public static void main(String[] args){
 		Frame f = new Frame("15-puzzle");
-		f.showMenu();
+		f.showGame();
 		f.showIt();
 		
 
