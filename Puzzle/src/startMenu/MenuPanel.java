@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import startMenu.Listener;
-import startMenu.Model;
 
 public class MenuPanel extends JPanel{
 	
@@ -13,7 +12,6 @@ public class MenuPanel extends JPanel{
 
 		this.setLayout(new BorderLayout(15, 15));
 		
-			
 			JPanel test = new JPanel();
 			test.setLayout(new GridLayout(4,3));
 			
