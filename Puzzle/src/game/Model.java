@@ -20,36 +20,28 @@ public class Model {
 public boolean checkWinCondition(){
 		int tempx=0;
 		int tempy=0;
-		System.out.println(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText()));
-		for(int i = 1;i<n*n;i++)
-		{
-			if(tempx==n-1)
-			{
-				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i)
-				{
+		for(int i = 1;i<n*n;i++){
+			if(tempx==n-1){
+				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i){
 					return false;
 				}
 				tempx=0;
 				tempy++;
 			}
 			else{
-				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i)
-				{
+				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i){
 					return false;
 				}
 				tempx++;
 			}
 		}
-			
 		return true;
 	}
 
 public void shuffle(){
-	System.out.println(n);
 	for (int i = 0; i<n*100;i++){
 	Random random = new Random();
 	int c= random.nextInt(4);
-	System.out.println("shuffle");
 	switch(c){
 	case 0:
 		if (!(y>n-2)){

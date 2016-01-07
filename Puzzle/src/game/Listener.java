@@ -15,6 +15,7 @@ public class Listener implements KeyListener{
 		this.x = panel.getX();
 		this.y = panel.getY();
 		this.n = panel.getN();
+		this.model = new Model(panel);
 	}
 	
 	public void keyPressed(KeyEvent e){
@@ -23,10 +24,12 @@ public class Listener implements KeyListener{
 		case KeyEvent.VK_UP:
 			if (!(y>n-2)){
 				panel.updateArray(y, x, y+1, x);
-				//if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
-					//if(model.checkWinCondition())
-						//System.out.println("You won!");
-				//}
+				this.x = panel.getX();
+				this.y = panel.getY();
+				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
+					if(model.checkWinCondition())
+						System.out.println("You won!");
+				}
 			}
 			break;
 		
@@ -38,6 +41,8 @@ public class Listener implements KeyListener{
 		case KeyEvent.VK_LEFT:
 			if (!(x>n-2)){
 				panel.updateArray(y, x, y, x+1);
+				this.x = panel.getX();
+				this.y = panel.getY();
 				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
 					if(model.checkWinCondition())
 						System.out.println("You won!");

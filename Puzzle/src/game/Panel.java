@@ -2,6 +2,7 @@ package game;
 
 import java.util.*;
 import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -20,26 +21,15 @@ public class Panel extends JPanel{
 	private int x;
 	private int y;
 
-	public int getN() {
-		return n;
-	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
-	}
-
 	private JLabel[][] gameGrid;
 	
 	public Panel(int n){
-		
 		this.x = n-1;
 		this.y = n-1;
 		this.n = n;
 		this.model = new Model(this);
-		this.setBackground(Color.white);
-		
+		this.setBackground(Color.cyan);
+
 		GridLayout gLay = new GridLayout(n,n);
 		this.setLayout(gLay);
 		
@@ -57,6 +47,7 @@ public class Panel extends JPanel{
 		}
 		gameGrid[n-1][n-1].setText("");
 		model.shuffle();
+		
 	}
 	
 	public JLabel[][] PuzzleArray(){
@@ -64,10 +55,22 @@ public class Panel extends JPanel{
 	}
 	
 	public void updateArray(int y, int x, int movey, int movex){
+		
 		this.PuzzleArray()[y][x].setText(this.PuzzleArray()[movey][movex].getText());
 		this.PuzzleArray()[movey][movex].setText("");
 		this.y=movey;
 		this.x=movex;
+		
 		}
+	
+	public int getN() {
+		return n;
+	}
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
 	
 }

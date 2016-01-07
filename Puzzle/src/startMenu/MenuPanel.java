@@ -1,40 +1,43 @@
 package startMenu;
 
-import java.util.*;
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
-import startMenu.Listener;
+import startMenu.ButtonListener;
+import game.Frame;
+import game.Panel;
+
 
 public class MenuPanel extends JPanel{
 	
-	public MenuPanel(){
-
-		this.setLayout(new BorderLayout(15, 15));
+	public MenuPanel(Frame frame){
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		
-			JPanel test = new JPanel();
-			test.setLayout(new GridLayout(4,3));
-			
-			JButton playButton = new JButton("Play");
-			playButton.setSize(new Dimension(15,15));
-			test.add(playButton);
-			playButton.addActionListener(new Listener());
+		ButtonListener buttonList = new ButtonListener(frame);
 		
-			JButton settingsButton = new JButton("Settings");
-			test.add(settingsButton);
-			settingsButton.addActionListener(new Listener());
+		JButton playButton = new JButton("Play");
+		this.add(playButton,gbc);
+		playButton.addActionListener(buttonList);
 		
-			JButton highscoreButton = new JButton("Highscore");
-			test.add(highscoreButton);
-			highscoreButton.addActionListener(new Listener());
-		
-			JButton exitButton = new JButton("Exit");
-			test.add(exitButton);
-			exitButton.addActionListener(new Listener());
-			
-		this.add(test, "Center");
-		
-		
-	}
+		JButton settingsButton = new JButton("Settings");
+		this.add(settingsButton, gbc);
+		settingsButton.addActionListener(buttonList);
 	
+		JButton highscoreButton = new JButton("Highscore");
+		this.add(highscoreButton, gbc);
+		highscoreButton.addActionListener(buttonList);
+	
+		JButton exitButton = new JButton("Exit");
+		this.add(exitButton, gbc);
+		exitButton.addActionListener(buttonList);
+	}
 }
