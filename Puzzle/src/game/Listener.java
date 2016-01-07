@@ -1,44 +1,63 @@
 package game;
 
 import java.awt.event.*;
-import game.Model;
+import game.*;
 
 public class Listener implements KeyListener{
 	private Model model;
+	private int n;
+	private int x;
+	private int y;
+	private Panel panel;
 	
-//	public Listener(Model model){
-//		this.model = model;
-//	}
-//	
-//	public void actionPerformed(ActionEvent e) {
-//		String actionCommand = e.getActionCommand();
-//		if(actionCommand.equals("X")){
-//			//game.taken();
-//		} else if(actionCommand.equals("O")){
-//			//game.taken();
-//		} else{
-//			System.out.println("ERROR");
-//		}
-//	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		//System.out.println(e.getKeyChar());
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public Listener(Panel panel){
+		this.panel = panel;
 	}
 	
+	public void keyPressed(KeyEvent e){
+		int c = e.getKeyCode();
+		switch(c){
+		case KeyEvent.VK_UP:
+			if (!(y>n-2)){
+				panel.updateArray(y, x, y+1, x);
+				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
+					if(model.checkWinCondition())
+						System.out.println("You won!");
+				}
+			}
+			break;
+		
+		case KeyEvent.VK_DOWN:
+			if (!(y<1)){
+				panel.updateArray(y, x, y-1, x);
+			}
+			break;
+		case KeyEvent.VK_LEFT:
+			if (!(x>n-2)){
+				panel.updateArray(y, x, y, x+1);
+				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
+					if(model.checkWinCondition())
+						System.out.println("You won!");
+				}
+			}
 	
+			break;
+		case KeyEvent.VK_RIGHT:
+			if (!(x<1)){
+				panel.updateArray(y, x, y, x-1);
+			}
+			break;
+		}	
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+	}
+
 }
