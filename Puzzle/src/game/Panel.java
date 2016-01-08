@@ -15,38 +15,31 @@ import javax.swing.border.LineBorder;
 
 import game.*;
 
-public class Panel extends JPanel{
+public class Panel extends JPanel {
 	private Model model;
 	private int n;
 	private int x;
 	private int y;
-
-	private JLabel[][] gameGrid;
+	private boolean firstTime;
+	private JLabel[][] puzzleArray;
 	
 	public Panel(int n){
 		this.x = n-1;
 		this.y = n-1;
 		this.n = n;
 		this.model = new Model(this);
+		this.puzzleArray = new JLabel[n][n];
+		this.firstTime = true;
 		this.setBackground(Color.cyan);
-
+		
+		Listener list = new Listener(this,this.model);
+		this.addKeyListener(list);
+		
 		GridLayout gLay = new GridLayout(n,n);
 		this.setLayout(gLay);
 		
-		gameGrid = new JLabel[n][n];
-		int temp = 1;
-		for(int i = 0; i<n;i++){
-			for(int j = 0;j<n;j++){
-				gameGrid[i][j] = new JLabel(""+temp);
-				gameGrid[i][j].setHorizontalAlignment(JLabel.CENTER);
-				gameGrid[i][j].setFont (getFont ().deriveFont (this.FontSize()));
-				gameGrid[i][j].setBorder(new LineBorder(Color.BLACK));
-				this.add(gameGrid[i][j], "Center");
-				temp++;
-			}
-		}
-		gameGrid[n-1][n-1].setText("");
-		model.shuffle();
+		//model.shuffle();
+		model.startShuffle();
 		
 	}
 	
@@ -55,20 +48,48 @@ public class Panel extends JPanel{
 		return (float) fontSize; 
 	}
 	
-	public JLabel[][] PuzzleArray(){
-		return gameGrid;
-	}
-	
-	public void updateArray(int y, int x, int movey, int movex){
+	public void updatePanel(){
 		
-		this.PuzzleArray()[y][x].setText(this.PuzzleArray()[movey][movex].getText());
-		this.PuzzleArray()[movey][movex].setText("");
-		this.y=movey;
-		this.x=movex;
-		
+		for(int i = 0; i<n;i++){
+			for(int j = 0;j<n;j++){
+				if(firstTime){
+					if(model.PuzzleArray()[i][j] != 0){
+						puzzleArray[i][j] = new JLabel(""+model.PuzzleArray()[i][j]);
+						this.add(puzzleArray[i][j]);
+						puzzleArray[i][j].setHorizontalAlignment(JLabel.CENTER);
+						puzzleArray[i][j].setFont (getFont ().deriveFont (FontSize()));
+						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));
+					} else{
+						puzzleArray[i][j] = new JLabel("");
+						this.add(puzzleArray[i][j]);
+						puzzleArray[i][j].setHorizontalAlignment(JLabel.CENTER);
+						puzzleArray[i][j].setFont (getFont ().deriveFont (FontSize()));
+						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));		
+					}
+				} else{
+					if(model.PuzzleArray()[i][j] != 0){
+						puzzleArray[i][j].setText(""+model.PuzzleArray()[i][j]);
+					} else{
+						puzzleArray[i][j].setText("");		
+					}
+				} 
+			}	
+			
 		}
+		firstTime = false;
+		}
+		
+	
+	
+//	public JLabel[][] PuzzleArray(){
+		//return gameGrid;
+	//}
+	
+
+	
 	
 	public void youWon(){
+		updatePanel();
 		System.out.println("You won!");
 		this.removeAll();
 		JLabel won = new JLabel("You won!");
@@ -80,12 +101,6 @@ public class Panel extends JPanel{
 	
 	public int getN() {
 		return n;
-	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
 	}
 	
 }

@@ -1,6 +1,9 @@
 package game;
 
+
 import java.util.Random;
+
+import javax.swing.JLabel;
 
 import game.Panel;
 
@@ -9,12 +12,43 @@ public class Model {
 	private int n;
 	private int x;
 	private int y;
+	private boolean isShuffling;
+	private static int[][] gameGrid;
 	
 	public Model(Panel view){
 		this.panel = view;
-		this.x = panel.getX();
-		this.y = panel.getY();
-		this.n= panel.getN();
+		this.n = panel.getN();
+		this.x = n-1;
+		this.y = this.x;
+		
+		gameGrid = new int[n][n];
+		
+		int temp = 1;
+		for(int i = 0; i<n;i++){
+			for(int j = 0;j<n;j++){
+				gameGrid[i][j] = temp;
+				
+				temp++;
+			}
+		}
+		gameGrid[n-1][n-1] = 0;
+
+	}
+	
+	public void startShuffle(){
+		int temp = 1;
+		for(int i = 0; i<n;i++){
+			for(int j = 0;j<n;j++){
+				gameGrid[i][j] = temp;
+				
+				temp++;
+			}
+		}
+		gameGrid[n-1][n-1] = 0;
+		gameGrid[0][0] = 2;
+		gameGrid[0][1] = 3;
+		gameGrid[0][2] = 1;
+		panel.updatePanel();
 	}
 	
 public boolean checkWinCondition(){
@@ -22,14 +56,14 @@ public boolean checkWinCondition(){
 		int tempy=0;
 		for(int i = 1;i<n*n;i++){
 			if(tempx==n-1){
-				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i){
+				if(gameGrid[tempy][tempx]!= i){
 					return false;
 				}
 				tempx=0;
 				tempy++;
 			}
 			else{
-				if(Integer.parseInt(panel.PuzzleArray()[tempy][tempx].getText())!= i){
+				if(gameGrid[tempy][tempx]!= i){
 					return false;
 				}
 				tempx++;
@@ -39,34 +73,88 @@ public boolean checkWinCondition(){
 	}
 
 public void shuffle(){
-	for (int i = 0; i<n*100;i++){
+	isShuffling=true;
 	Random random = new Random();
-	int c= random.nextInt(4);
-	switch(c){
-	case 0:
+	for (int i = 0; i<n*100;i++){
+		int c= random.nextInt(4)+37;
+		movement(c);
+			
+
+		}
+
+		panel.updatePanel();
+		isShuffling = false;
+	}
+public void updateArray(int y, int x, int movey, int movex){
+	int temp = gameGrid[y][x];
+	gameGrid[y][x] = gameGrid[movey][movex];
+	gameGrid[movey][movex] = temp;
+	this.y=movey;
+	this.x=movex;
+	
+	}
+	public void movement(int c){
+		
+		switch(c){
+	case 38:
 		if (!(y>n-2)){
-			panel.updateArray(y, x, y+1, x);
+			updateArray(y, x, y+1, x);
+			if(y==n-1 && x==n-1 && gameGrid[n-1][n-2]==n*n-1){
+				if(!isShuffling && checkWinCondition())
+					panel.youWon();
+			}
+			
 		}
 		break;
-	case 1:
+	
+	case 40:
 		if (!(y<1)){
-			panel.updateArray(y, x, y-1, x);
+			updateArray(y, x, y-1, x);
+			
+			
 		}
 		break;
-	case 2:
+	case 37:
 		if (!(x>n-2)){
-			panel.updateArray(y, x, y, x+1);
+			updateArray(y, x, y, x+1);
+			
+			if(y==n-1 && x==n-1 && gameGrid[n-1][n-2]==(n*n-1)){
+				if(!isShuffling && checkWinCondition())
+					panel.youWon();
+			}
 		}
+
 		break;
-	case 3:
+	case 39:
 		if (!(x<1)){
-			panel.updateArray(y, x, y, x-1);
+			updateArray(y, x, y, x-1);
 		}
 		break;
+		}
+		
+		panel.updatePanel();
+	}	
+	
+
+	public int[][] PuzzleArray(){
+		
+		return gameGrid;
 	}
-	this.x = panel.getX();
-	this.y = panel.getY();
+	
+	public int getX() {
+		return x;
 	}
-}
+	
+	public int getY() {
+		return y;
+	}
+	
+	//public void setX(int x) {
+		//this.x = x;
+	//}
+	
+//	public void setY(int y) {
+//		this.y = y;
+//	}
 
 }
