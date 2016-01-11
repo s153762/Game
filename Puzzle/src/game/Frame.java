@@ -14,7 +14,6 @@ public class Frame extends JFrame {
 	private MenuPanel menuPanel;
 	private InGamePanel inGamePanel;
 	public static double size = 600;
-
 	
 	public Frame(String str){
 		this.setSize((int) (size*1.25),(int) size);
@@ -23,37 +22,23 @@ public class Frame extends JFrame {
 		this.setTitle(str);	
 		this.setLayout(new BorderLayout());
 		
-<<<<<<< HEAD
 		menuPanel = new MenuPanel(this);
 		panel = new Panel(this.n);
 		inGamePanel = new InGamePanel(this);
 		
-=======
-		
-		this.menuPanel = new MenuPanel(this);
-		this.panel = new Panel(this.n);
-		this.inGamePanel = new InGamePanel();
->>>>>>> 9c7a90b8f44ff39c1dadb65bd97e9113e3595bf4
 		
 	}
 	
 	public void showMenu(){
-<<<<<<< HEAD
 
 		this.getContentPane().remove(panel);
 		this.getContentPane().remove(inGamePanel);
 		
-=======
-		
-		//this.getContentPane().remove(panel);
-		//this.getContentPane().remove(inGamePanel);
->>>>>>> 9c7a90b8f44ff39c1dadb65bd97e9113e3595bf4
 		this.getContentPane().add(menuPanel, "Center");
 		menuPanel.setVisible(true);
 	}
 	
 	public void showGame(){
-<<<<<<< HEAD
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
 		//this.getContentPane().remove(menuPanel);
@@ -66,21 +51,6 @@ public class Frame extends JFrame {
 		panel.setVisible(true);
 		panel.requestFocus(true);
 		panel.setFocusable(true);
-=======
-	;
-		
-		this.getContentPane().remove(menuPanel);
-		this.getContentPane().add(panel, "Center");
-		panel.getModel().shuffle();
-		this.revalidate();
-		panel.setFocusable(true);
-		panel.requestFocus();
-		//panel.setVisible(true);
-				//this.getContentPane().add(new JLabel(),"North");
-		//this.getContentPane().add(new JLabel(), "East");
-		//this.getContentPane().add(new JLabel(), "West");
-		//this.addKeyListener(list);
->>>>>>> 9c7a90b8f44ff39c1dadb65bd97e9113e3595bf4
 	}
 	
 
