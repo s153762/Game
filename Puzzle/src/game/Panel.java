@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -34,10 +34,10 @@ public class Panel extends JPanel {
 		
 		Listener list = new Listener(this,this.model);
 		this.addKeyListener(list);
-		
+		Timer timer = new Timer(1000/100, list);
 		GridLayout gLay = new GridLayout(n,n);
 		this.setLayout(gLay);
-		
+		timer.start();
 		//model.shuffle();
 		model.startShuffle();
 		

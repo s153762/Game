@@ -1,6 +1,8 @@
 package game;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 import javax.swing.JLabel;
@@ -12,6 +14,7 @@ public class Model {
 	private int n;
 	private int x;
 	private int y;
+	private float count;
 	private boolean isShuffling;
 	private static int[][] gameGrid;
 	
@@ -33,6 +36,16 @@ public class Model {
 		}
 		gameGrid[n-1][n-1] = 0;
 
+	}
+	
+	public float step(){
+		count += 0.01;
+		
+		BigDecimal bd = new BigDecimal(count);
+		bd = bd.setScale(2,  RoundingMode.HALF_UP);
+		count=bd.floatValue();
+		return count;
+		
 	}
 	
 	public void startShuffle(){

@@ -23,7 +23,6 @@ public class MenuPanel extends JPanel{
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		
 		ButtonListener buttonList = new ButtonListener(frame);
-		
 		JButton playButton = new JButton("Play");
 		this.add(playButton,gbc);
 		playButton.addActionListener(buttonList);

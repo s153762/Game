@@ -3,7 +3,7 @@ package game;
 import java.awt.event.*;
 import game.*;
 
-public class Listener implements KeyListener{
+public class Listener implements KeyListener, ActionListener {
 	private Model model;
 	private Panel panel;
 	private int n;
@@ -20,7 +20,6 @@ public class Listener implements KeyListener{
 	}
 	
 	public void keyPressed(KeyEvent e){
-		System.out.println("key");
 		int c = e.getKeyCode();
 		model.movement(c);
 	}
@@ -33,6 +32,13 @@ public class Listener implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		model.step();
+		
 	}
 
 }

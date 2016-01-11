@@ -11,9 +11,6 @@ public class ButtonListener implements ActionListener{
 		this.frame = frame;
 	}
 	
-	public ButtonListener(){
-	}
-	
 	public void actionPerformed(ActionEvent event){
 		String buttonPressed = event.getActionCommand();
 		
@@ -41,6 +38,7 @@ public class ButtonListener implements ActionListener{
 			
 			case "Back to menu":
 				System.out.println("Back");
+				frame.showMenu();
 			break;
 		}
 	}

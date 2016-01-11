@@ -12,17 +12,17 @@ import javax.swing.JPanel;
 import startMenu.ButtonListener;
 
 public class InGamePanel extends JPanel{
+	private Frame frame;
 	
-	public InGamePanel(){
+	public InGamePanel( Frame frame){
 		this.setLayout(new BorderLayout());
-		
-		ButtonListener buttonList = new ButtonListener();
+		ButtonListener buttonList = new ButtonListener(frame);
 		
 		JButton pause = new JButton("Pause");
 		this.add(pause, "West");
 		pause.addActionListener(buttonList);
 		
-		JLabel timer = new JLabel("Timer");
+		JLabel timer = new JLabel("");
 		timer.setHorizontalAlignment(JLabel.CENTER);
 		this.add(timer, "Center");
 	
