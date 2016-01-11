@@ -14,6 +14,7 @@ public class Frame extends JFrame {
 	private MenuPanel menuPanel;
 	private InGamePanel inGamePanel;
 	public static double size = 600;
+
 	
 	public Frame(String str){
 		this.setSize((int) (size*1.25),(int) size);
@@ -22,24 +23,31 @@ public class Frame extends JFrame {
 		this.setTitle(str);	
 		this.setLayout(new BorderLayout());
 		
-		this.panel = new Panel(this.n);
+		
 		this.menuPanel = new MenuPanel(this);
+		this.panel = new Panel(this.n);
 		this.inGamePanel = new InGamePanel();
 		
 	}
 	
 	public void showMenu(){
-		this.getContentPane().remove(panel);
-		this.getContentPane().remove(inGamePanel);
+		
+		//this.getContentPane().remove(panel);
+		//this.getContentPane().remove(inGamePanel);
 		this.getContentPane().add(menuPanel, "Center");
 	}
 	
 	public void showGame(){
-		//this.getContentPane().removeAll();
-		this.getContentPane().add(inGamePanel, "South");
-		this.getContentPane().add(panel);
+	;
+		
+		this.getContentPane().remove(menuPanel);
+		this.getContentPane().add(panel, "Center");
+		panel.getModel().shuffle();
+		this.revalidate();
 		panel.setFocusable(true);
-		//this.getContentPane().add(new JLabel(),"North");
+		panel.requestFocus();
+		//panel.setVisible(true);
+				//this.getContentPane().add(new JLabel(),"North");
 		//this.getContentPane().add(new JLabel(), "East");
 		//this.getContentPane().add(new JLabel(), "West");
 		//this.addKeyListener(list);

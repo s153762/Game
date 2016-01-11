@@ -102,5 +102,10 @@ public class Panel extends JPanel {
 	public int getN() {
 		return n;
 	}
+
+	public Model getModel() {
+		// TODO Auto-generated method stub
+		return model;
+	}
 	
 }
