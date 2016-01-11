@@ -8,8 +8,5 @@ public class Drive {
 		Frame f = new Frame("15-puzzle");
 		f.showMenu();
 		f.showIt();
-
-
-		
 	}
 }
