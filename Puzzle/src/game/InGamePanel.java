@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ public class InGamePanel extends JPanel{
 //	private Frame frame;
 //	private Model model;
 	private JLabel timer;
+	private JLabel moveCounter;
 	private JButton pause;
 	private float count;
 	private Timer time;
@@ -26,7 +28,7 @@ public class InGamePanel extends JPanel{
 	
 	public InGamePanel(Frame frame){
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout(FlowLayout.LEFT, 90,0));
 		ButtonListener buttonList = new ButtonListener(frame, this);
 		
 		
@@ -34,6 +36,9 @@ public class InGamePanel extends JPanel{
 		this.add(pause, "West");
 		pause.addActionListener(buttonList);
 		
+		moveCounter = new JLabel("Moves: ");
+		moveCounter.setHorizontalAlignment(JLabel.CENTER);
+		this.add(moveCounter, "Center");
 		Listener list = new Listener(this);
 		time = new Timer(1000/100, list);
 		timer = new JLabel("Time: ");
@@ -63,8 +68,7 @@ public class InGamePanel extends JPanel{
 		paused = !paused;
 	}
 	
-	public void updatePanel()
-	{
+	public void updatePanel(){
 		count += 0.01;
 	
 		BigDecimal bd = new BigDecimal(count);
@@ -72,6 +76,13 @@ public class InGamePanel extends JPanel{
 		count=bd.floatValue();			
 			
 		timer.setText("Time: "+count);
+	}
+	public void updateMoveCount(int n)
+	{
+		moveCounter.setText("Moves: "+ n);
+	}
+	public void stopTimerWin(){
+		time.stop();
 	}
 	
 	public float getTime(){

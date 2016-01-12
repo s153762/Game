@@ -38,8 +38,6 @@ public class Model {
 
 	}
 	
-
-	
 	public void startShuffle(){
 		int temp = 1;
 		for(int i = 0; i<n;i++){
@@ -80,7 +78,7 @@ public boolean checkWinCondition(){
 	public void shuffle(){
 		isShuffling=true;
 		Random random = new Random();
-		for (int i = 0; i<n*100;i++){
+		for (int i = 0; i<n*n*100;i++){
 			int c= random.nextInt(4)+37;
 			movement(c);
 		}

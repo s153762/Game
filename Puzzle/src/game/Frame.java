@@ -9,22 +9,22 @@ import game.Panel;
 
 public class Frame extends JFrame {
 
-	private int n = 5;
+	private int n = 3;
 	private Panel panel;
 	private MenuPanel menuPanel;
 	private InGamePanel inGamePanel;
 	public static double size = 600;
 	
-	public Frame(String str){
+	public Frame(){
 		this.setSize((int) (size*1.25),(int) size);
 		this.setLocation(100,50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle(str);	
+		this.setTitle(n*n-1 + " Sliding Puzzle");	
 		this.setLayout(new BorderLayout());
 		
 		menuPanel = new MenuPanel(this);
-		panel = new Panel(this.n);
 		setInGamePanel(new InGamePanel(this));
+		panel = new Panel(this.n, getInGamePanel());
 	}
 	
 	public void showMenu(){
@@ -45,7 +45,7 @@ public class Frame extends JFrame {
 		this.getContentPane().add(getInGamePanel(), "South");
 		getInGamePanel().setVisible(true);
 		
-		panel = new Panel(this.n);
+		panel = new Panel(this.n, getInGamePanel());
 		this.getContentPane().add(panel, "Center");
 		panel.setVisible(true);
 		panel.requestFocus(true);
