@@ -24,15 +24,13 @@ public class Frame extends JFrame {
 		
 		menuPanel = new MenuPanel(this);
 		panel = new Panel(this.n);
-		inGamePanel = new InGamePanel(this);
-		
-		
+		setInGamePanel(new InGamePanel(this));
 	}
 	
 	public void showMenu(){
 
 		this.getContentPane().remove(panel);
-		this.getContentPane().remove(inGamePanel);
+		this.getContentPane().remove(getInGamePanel());
 		
 		this.getContentPane().add(menuPanel, "Center");
 		menuPanel.setVisible(true);
@@ -43,8 +41,9 @@ public class Frame extends JFrame {
 		menuPanel.setFocusable(false);
 		//this.getContentPane().remove(menuPanel);
 		
-		this.getContentPane().add(inGamePanel, "South");
-		inGamePanel.setVisible(true);
+		setInGamePanel(new InGamePanel(this));
+		this.getContentPane().add(getInGamePanel(), "South");
+		getInGamePanel().setVisible(true);
 		
 		panel = new Panel(this.n);
 		this.getContentPane().add(panel, "Center");
@@ -60,6 +59,14 @@ public class Frame extends JFrame {
 	
 	public void hideIt() { 
 		this.setVisible(false);
+	}
+
+	public InGamePanel getInGamePanel() {
+		return inGamePanel;
+	}
+
+	public void setInGamePanel(InGamePanel inGamePanel) {
+		this.inGamePanel = inGamePanel;
 	}
 
 

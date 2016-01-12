@@ -6,6 +6,7 @@ import game.*;
 public class Listener implements KeyListener, ActionListener {
 	private Model model;
 	private Panel panel;
+	private InGamePanel timePanel;
 	private int n;
 	private int x;
 	private int y;
@@ -17,6 +18,10 @@ public class Listener implements KeyListener, ActionListener {
 		this.y = model.getY();
 		this.n = panel.getN();
 
+	}
+	
+	public Listener(InGamePanel timePanel){
+		this.timePanel = timePanel;
 	}
 	
 	public void keyPressed(KeyEvent e){
@@ -37,8 +42,9 @@ public class Listener implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		model.step();
-		
+		timePanel.updatePanel();
+
 	}
+
 
 }

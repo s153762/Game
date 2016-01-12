@@ -6,9 +6,15 @@ import startMenu.*;
 
 public class ButtonListener implements ActionListener{
 	private Frame frame;
+	private InGamePanel buttonPanel;
 	
 	public ButtonListener(Frame frame){
 		this.frame = frame;
+	}
+	
+	public ButtonListener(Frame frame, InGamePanel buttonPanel){
+		this.frame = frame;
+		this.buttonPanel = buttonPanel;
 	}
 	
 	public void actionPerformed(ActionEvent event){
@@ -34,6 +40,12 @@ public class ButtonListener implements ActionListener{
 			
 			case "Pause":
 				System.out.println("Pause");
+				buttonPanel.pause();
+			break;
+			
+			case "Resume":
+				System.out.println("Pause");
+				buttonPanel.pause();
 			break;
 			
 			case "Back to menu":
@@ -41,6 +53,7 @@ public class ButtonListener implements ActionListener{
 				frame.showMenu();
 			break;
 		}
+		
 	}
 	
 }
