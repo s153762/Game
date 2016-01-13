@@ -27,6 +27,7 @@ public class ButtonListener implements ActionListener{
 			break;
 			
 			case "Settings": 
+				frame.showSettings();
 				System.out.println("Settings");
 			break;
 				

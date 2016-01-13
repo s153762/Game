@@ -50,10 +50,14 @@ public class InGamePanel extends JPanel{
 		this.add(backButton, "East");
 		backButton.addActionListener(buttonList);
 		
-		time.start();
+		//time.start();
 		paused = false;
 	}
-	
+	public void startGame(){
+		time.start();
+		count = 0;
+		
+	}
 	public void pause(){
 		if (paused)
 		{

@@ -42,8 +42,8 @@ public class Panel extends JPanel {
 		GridLayout gLay = new GridLayout(n,n);
 		this.setLayout(gLay);
 //		timer.start();
-		//model.shuffle();
-		model.startShuffle();
+		model.shuffle();
+		//model.startShuffle();
 		
 	}
 	
@@ -97,12 +97,12 @@ public class Panel extends JPanel {
 		updatePanel();
 		System.out.println("You won!");
 		this.removeKeyListener(list);
-		this.removeAll();
-		JLabel won = new JLabel("You won!");
-		
-		won.setHorizontalAlignment(JLabel.CENTER);
-		won.setFont (getFont ().deriveFont (100f));
-		this.add(won, "Center");
+		//this.removeAll();
+//		JLabel won = new JLabel("You won!");
+//		
+//		won.setHorizontalAlignment(JLabel.CENTER);
+//		won.setFont (getFont ().deriveFont (100f));
+//		this.add(won, "Center");
 		System.out.println("again");
 		inGamePanel.stopTimerWin();
 	}

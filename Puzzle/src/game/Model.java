@@ -131,8 +131,8 @@ public boolean checkWinCondition(){
 		}
 		break;
 		}
-		
-		panel.updatePanel();
+		if(!isShuffling)
+			panel.updatePanel();
 	}	
 	
 

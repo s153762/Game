@@ -21,7 +21,7 @@ public class test {
 				n=scanner.nextInt();
 			}
 		}catch(InputMismatchException ime){
-			System.out.println("Det sakl vÃ¦re et tal smarte");
+			System.out.println("Det sakl være et tal smarte");
 			n=getInput();
 		}
 		return n;
