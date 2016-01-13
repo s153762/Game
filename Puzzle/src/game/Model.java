@@ -14,8 +14,9 @@ public class Model {
 	private int n;
 	private int x;
 	private int y;
-	private float count;
+	private int moveCount;
 	private boolean isShuffling;
+
 	private static int[][] gameGrid;
 	
 	public Model(Panel view){
@@ -23,7 +24,6 @@ public class Model {
 		this.n = panel.getN();
 		this.x = n-1;
 		this.y = this.x;
-		
 		gameGrid = new int[n][n];
 		
 		int temp = 1;
@@ -36,16 +36,6 @@ public class Model {
 		}
 		gameGrid[n-1][n-1] = 0;
 
-	}
-	
-	public float step(){
-		count += 0.01;
-		
-		BigDecimal bd = new BigDecimal(count);
-		bd = bd.setScale(2,  RoundingMode.HALF_UP);
-		count=bd.floatValue();
-		return count;
-		
 	}
 	
 	public void startShuffle(){
@@ -85,27 +75,27 @@ public boolean checkWinCondition(){
 		return true;
 	}
 
-public void shuffle(){
-	isShuffling=true;
-	Random random = new Random();
-	for (int i = 0; i<n*100;i++){
-		int c= random.nextInt(4)+37;
-		movement(c);
-			
-
+	public void shuffle(){
+		isShuffling=true;
+		Random random = new Random();
+		for (int i = 0; i<n*n*100;i++){
+			int c= random.nextInt(4)+37;
+			movement(c);
 		}
-
 		panel.updatePanel();
 		isShuffling = false;
 	}
-public void updateArray(int y, int x, int movey, int movex){
-	int temp = gameGrid[y][x];
-	gameGrid[y][x] = gameGrid[movey][movex];
-	gameGrid[movey][movex] = temp;
-	this.y=movey;
-	this.x=movex;
 	
+	public void updateArray(int y, int x, int movey, int movex){
+		int temp = gameGrid[y][x];
+		gameGrid[y][x] = gameGrid[movey][movex];
+		gameGrid[movey][movex] = temp;
+		this.y=movey;
+		this.x=movex;
+		if(!isShuffling)
+			moveCount++;
 	}
+
 	public void movement(int c){
 		
 		switch(c){
@@ -123,14 +113,11 @@ public void updateArray(int y, int x, int movey, int movex){
 	case 40:
 		if (!(y<1)){
 			updateArray(y, x, y-1, x);
-			
-			
 		}
 		break;
 	case 37:
 		if (!(x>n-2)){
 			updateArray(y, x, y, x+1);
-			
 			if(y==n-1 && x==n-1 && gameGrid[n-1][n-2]==(n*n-1)){
 				if(!isShuffling && checkWinCondition())
 					panel.youWon();
@@ -144,8 +131,8 @@ public void updateArray(int y, int x, int movey, int movex){
 		}
 		break;
 		}
-		
-		panel.updatePanel();
+		if(!isShuffling)
+			panel.updatePanel();
 	}	
 	
 
@@ -160,6 +147,9 @@ public void updateArray(int y, int x, int movey, int movex){
 	
 	public int getY() {
 		return y;
+	}
+	public int getMoveCount(){
+		return moveCount;
 	}
 	
 	//public void setX(int x) {
