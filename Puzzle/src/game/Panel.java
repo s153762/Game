@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.swing.BorderFactory;
 //import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,26 +29,50 @@ public class Panel extends JPanel {
 	private Listener list;
 	private JLabel[][] puzzleArray;
 	private InGamePanel inGamePanel;
+	Color color; 
+	int hardMode;
+	
 	
 	public Panel(int n, InGamePanel inGamePanel, Frame frame){
+		this.hardMode = frame.getHardMode();
 		this.x = n-1;
 		this.y = n-1;
 		this.n = n;
 		this.model = new Model(this);
 		this.puzzleArray = new JLabel[n][n];
 		this.firstTime = true;
-		this.setBackground(Color.cyan);
+		this.setBackground(Color.white);
 		this.inGamePanel = inGamePanel;
 		this.frame = frame;
-		
+		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		list = new Listener(this,this.model);
 		this.addKeyListener(list);
 //		Timer timer = new Timer(1000/100, list);
-		GridLayout gLay = new GridLayout(n,n);
+		GridLayout gLay = new GridLayout(n,n,10-(n/5),10-(n/5));
 		this.setLayout(gLay);
 //		timer.start();
 		//model.shuffle();
+		color();
+		model.setHardMode(hardMode);
 		model.startShuffle();
+		
+		
+	}
+	
+	
+	public void color(){
+		switch(hardMode){
+		case 0:
+			color = new Color(0,153,0);
+			break;
+		case 1: 
+			color = new Color(0,204,204);
+			break;
+		case 2: 
+			color = new Color(204,0,0);
+			break;
+		}
+		
 		
 		
 	}
@@ -67,6 +93,8 @@ public class Panel extends JPanel {
 						puzzleArray[i][j].setHorizontalAlignment(JLabel.CENTER);
 						puzzleArray[i][j].setFont (getFont ().deriveFont (FontSize()));
 						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));
+						puzzleArray[i][j].setOpaque(true);
+						puzzleArray[i][j].setBackground(color);
 					} else{
 						puzzleArray[i][j] = new JLabel("");
 						//puzzleArray[i][j].setBackground(Color.black);
@@ -74,13 +102,14 @@ public class Panel extends JPanel {
 						this.add(puzzleArray[i][j]);
 						puzzleArray[i][j].setHorizontalAlignment(JLabel.CENTER);
 						puzzleArray[i][j].setFont (getFont ().deriveFont (FontSize()));
-						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));		
+						//puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));		
 					}
 				} else{
 					if(model.PuzzleArray()[i][j] == 0){
 						puzzleArray[i][j].setText("");
 						puzzleArray[i][j].setOpaque(false);
-						puzzleArray[i][j].setBackground(Color.cyan);
+						puzzleArray[i][j].setBackground(color);
+						puzzleArray[i][j].setBorder(null);
 					
 						
 						
@@ -90,9 +119,10 @@ public class Panel extends JPanel {
 						puzzleArray[i][j].setText("");	
 					}
 					else{
-						puzzleArray[i][j].setOpaque(false);
-						puzzleArray[i][j].setBackground(Color.cyan);
+						puzzleArray[i][j].setOpaque(true);
+						puzzleArray[i][j].setBackground(color);
 						puzzleArray[i][j].setText(""+model.PuzzleArray()[i][j]);
+						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));
 					}
 				} 
 			}	
@@ -109,9 +139,7 @@ public class Panel extends JPanel {
 	//}
 	
 
-	public void setDifficulty(int hardMode){
-		model.setHardMode(hardMode);
-	}
+
 	
 	public void youWon(){
 		updatePanel();

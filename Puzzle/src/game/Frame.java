@@ -70,7 +70,7 @@ public class Frame extends JFrame {
 		inGamePanel.startGame();
 		
 		panel = new Panel(n, getInGamePanel(), this);
-		panel.setDifficulty(this.hardMode);
+		//panel.setDifficulty(this.hardMode);
 
 		this.getContentPane().add(panel, "Center");
 		panel.setVisible(true);
