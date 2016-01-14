@@ -11,12 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import startMenu.ButtonListener;
 
 public class InGamePanel extends JPanel{
-//	private Frame frame;
+	private Frame frame;
 //	private Model model;
 	private JLabel timer;
 	private JLabel moveCounter;
@@ -30,7 +31,7 @@ public class InGamePanel extends JPanel{
 		
 		this.setLayout(new FlowLayout(FlowLayout.LEFT, 90,0));
 		ButtonListener buttonList = new ButtonListener(frame, this);
-		
+		this.frame=frame;
 		
 		this.pause = new JButton("Pause");
 		this.add(pause, "West");
@@ -63,10 +64,11 @@ public class InGamePanel extends JPanel{
 		{
 			time.start();
 			pause.setText("Pause");
+			
+			
 		}
 		else{
 			time.stop();
-			
 			pause.setText("Resume");
 		}
 		paused = !paused;

@@ -16,6 +16,7 @@ public class Model {
 	private int y;
 	private int moveCount;
 	private boolean isShuffling;
+	private int hardMode;
 
 	private static int[][] gameGrid;
 	
@@ -131,10 +132,49 @@ public boolean checkWinCondition(){
 		}
 		break;
 		}
-		if(!isShuffling)
-			panel.updatePanel();
+		if(!isShuffling){
+			
+			if(hardMode != 0)
+				harderArray();
+			else
+				panel.updatePanel();
+			
+		}
+			
 	}	
-	
+	public void harderArray(){
+		int diff = 0;
+		if(hardMode == 1)
+			diff = n/2;
+		else
+			diff = n-1;
+		int[][] tempArray = new int[n][n];
+		for(int i = 0; i<n;i++){
+			for(int j = 0;j<n;j++){
+				tempArray[i][j]=gameGrid[i][j];
+			}
+		}
+		int tempx;
+		int tempy;
+		Random r = new Random();
+		for(int i = 0 ; i< diff;i++){
+			
+			tempx = r.nextInt(n);
+			tempy = r.nextInt(n);
+			if(gameGrid[tempy][tempx]!=0 && gameGrid[tempy][tempx]!=n*n )
+			{
+				gameGrid[tempy][tempx]=n*n;
+				
+			}
+			else{
+				i--;
+			}
+		}
+		panel.updatePanel();
+		
+		gameGrid = tempArray;
+		
+	}
 
 	public int[][] PuzzleArray(){
 		
@@ -151,7 +191,9 @@ public boolean checkWinCondition(){
 	public int getMoveCount(){
 		return moveCount;
 	}
-	
+	public void setHardMode(int hardMode){
+		this.hardMode=hardMode;
+	}
 	//public void setX(int x) {
 		//this.x = x;
 	//}
