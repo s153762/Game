@@ -114,9 +114,10 @@ public class Panel extends JPanel {
 						
 						
 					} else if(model.PuzzleArray()[i][j] == n*n){
-						puzzleArray[i][j].setBackground(Color.black);
 						puzzleArray[i][j].setOpaque(true);
+						puzzleArray[i][j].setBackground(color);					
 						puzzleArray[i][j].setText("");	
+						puzzleArray[i][j].setBorder(new LineBorder(Color.BLACK));
 					}
 					else{
 						puzzleArray[i][j].setOpaque(true);
