@@ -139,23 +139,42 @@ public class Panel extends JPanel {
 		//return gameGrid;
 	//}
 	
-
-
 	
 	public void youWon(){
 		updatePanel();
 		System.out.println("You won!");
-		//this.removeKeyListener(list);
-		//this.removeAll();
-//		JLabel won = new JLabel("You won!");
-//		
-//		won.setHorizontalAlignment(JLabel.CENTER);
-//		won.setFont (getFont ().deriveFont (100f));
-//		this.add(won, "Center");
 		inGamePanel.stopTimerWin();
 		
-		Highscore highscore = new Highscore(inGamePanel.getTime());
-		highscore.updateScore();
+
+		Highscores highscoreOver10 = new Highscores("HighscoresOver10.dat");
+		Highscores highscoreOver5 = new Highscores("HighscoresOver5.dat");
+		Highscores highscore = new Highscores("Highscores.dat");
+		
+		if(n>=10){
+			if(highscoreOver10.isNewHighscore(inGamePanel.getTime())){
+				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in 'OVER10'! What is your name?");
+				highscoreOver10.addNewHighscore(name, inGamePanel.getTime());
+				for(int i = 0; i<highscoreOver10.getHighscores().size();i++){
+					System.out.println(highscoreOver10.getHighscores().get(i));
+				}
+			}
+		} else if (n>=5){
+			if(highscoreOver5.isNewHighscore(inGamePanel.getTime())){
+				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in 'OVER5'! What is your name?");
+				highscoreOver5.addNewHighscore(name, inGamePanel.getTime());
+				for(int i = 0; i<highscoreOver5.getHighscores().size();i++){
+					System.out.println(highscoreOver5.getHighscores().get(i));
+				}
+			}
+		} else{
+			if(highscore.isNewHighscore(inGamePanel.getTime())){
+				String name = JOptionPane.showInputDialog("You set a new score on the top 10! What is your name?");
+				highscore.addNewHighscore(name, inGamePanel.getTime());
+				for(int i = 0; i<highscore.getHighscores().size();i++){
+					System.out.println(highscore.getHighscores().get(i));
+				}
+			}
+		}
 		
 		int choice = JOptionPane.showConfirmDialog(null,"You won the game! Do you want to play again?");
 		if (choice == JOptionPane.YES_OPTION){
