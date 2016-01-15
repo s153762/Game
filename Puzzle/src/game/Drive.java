@@ -8,6 +8,7 @@ public class Drive {
 		Frame f = new Frame();
 		f.showMenu();
 		f.showIt();
+		
 	}
 	
 }

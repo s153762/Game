@@ -14,7 +14,7 @@ import game.Panel;
 public class Frame extends JFrame {
 
 	private int n = 3;
-	private int hardMode = 0;
+	private int difficulty = 0;
 	private Panel panel;
 	private MenuPanel menuPanel;
 	private SettingsPanel settingsPanel;
@@ -24,13 +24,14 @@ public class Frame extends JFrame {
 	
 	
 	public Frame(){
-		
+		//constructing frame
 		this.setSize((int) (size*1.25),(int) size);
 		this.setLocation(100,50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(n*n-1 + " Sliding Puzzle");	
 		this.setLayout(new BorderLayout());
 		
+		//making the panels to the frame
 		this.settingsPanel = new SettingsPanel(this,n);
 		this.menuPanel = new MenuPanel(this);
 		this.inGamePanel = new InGamePanel(this);
@@ -40,43 +41,33 @@ public class Frame extends JFrame {
 	}
 	
 	public void showMenu(){
-		this.setTitle(n*n-1 + " Sliding Puzzle");
-		//panel.setVisible(false);
-		//panel.setFocusable(false);
-		//inGamePanel.setVisible(false);
-		//inGamePanel.setFocusable(false);
-//		settingsPanel.setVisible(false);
-//		settingsPanel.setFocusable(false);
+		//Removing previously used panels
 		this.getContentPane().remove(settingsPanel);
 		this.getContentPane().remove(panel);
 		this.getContentPane().remove(getInGamePanel());
 		this.getContentPane().remove(highscorePanel);
 		
-		//this.menuPanel = new MenuPanel(this);
+		//showing the menu panel
+		this.setTitle(n*n-1 + " Sliding Puzzle");
 		this.getContentPane().add(menuPanel, "Center");
 		menuPanel.setVisible(true);
-		//menuPanel.setFocusable(true);
-		//this.revalidate();
+		this.revalidate();
 	}
 	
 	public void showGame(){
-		//n = settingsPanel.returnN();
+		//hiding the menu panel
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
 		
-		//this.getContentPane().remove(settingsPanel);
-		//this.getContentPane().remove(menuPanel);
-	
-		//this.setContentPane(menuPanel);
-		
+		//making a new panel for with buttons while playing
 		setInGamePanel(new InGamePanel(this));
 		this.getContentPane().add(inGamePanel, "South");
 		inGamePanel.setVisible(true);
 		inGamePanel.startGame();
 		
+		//making a new game panel
 		panel = new Panel(n, getInGamePanel(), this);
-		//panel.setDifficulty(this.hardMode);
-
+		
 		this.getContentPane().add(panel, "Center");
 		panel.setVisible(true);
 		panel.requestFocus(true);
@@ -85,42 +76,44 @@ public class Frame extends JFrame {
 	}
 	
 	public void showSettings(){
-		this.getContentPane().remove(menuPanel);
-		//this.getContentPane().remove(panel);
-		//this.getContentPane().remove(inGamePanel);
+		//hiding the menu panel
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
+		
+		//making a new settings panel
 		this.settingsPanel = new SettingsPanel(this,n);
 		this.getContentPane().add(settingsPanel, "Center");
-		//settingsPanel.setVisible(true);
-		//settingsPanel.setFocusable(false);
 		this.revalidate();
 	}
 	
 	public void showHighscore(){
-		this.getContentPane().remove(menuPanel);
+		//hiding the menu panel
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
+		
+		//making a new highscore panel
 		this.highscorePanel = new HighscorePanel(this);
 		this.getContentPane().add(highscorePanel, "Center");
-		//settingsPanel.setVisible(true);
-		//settingsPanel.setFocusable(false);
 		this.revalidate();
 	}
 
 	public void showIt(){
 		this.setVisible(true);
 	}
+
+	//getters and setters
+	public void setDifficulty(int difficulty){
+		this.difficulty = difficulty;
+	}
 	
-	public void hideIt() { 
-		this.setVisible(false);
+	public int getDifficulty() {
+		return difficulty;
 	}
-	public void setHardMode(int hardmode){
-		this.hardMode= hardmode;
+	
+	public Panel getPanel(){
+		return panel;
 	}
-	public int getHardMode(){
-		return hardMode;	
-		}
+
 	public InGamePanel getInGamePanel() {
 		return inGamePanel;
 	}
@@ -137,6 +130,8 @@ public class Frame extends JFrame {
 	{
 		return n;
 	}
+
+
 	
 
 }

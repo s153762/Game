@@ -37,7 +37,7 @@ public class SettingsPanel extends JPanel implements ChangeListener, ActionListe
 	    slider.setMajorTickSpacing(1);
 	
 	    
-		difficultyList.setSelectedIndex(frame.getHardMode());
+		difficultyList.setSelectedIndex(frame.getDifficulty());
 	    ButtonListener buttonList = new ButtonListener(frame);
 		
 		//
@@ -69,13 +69,13 @@ public class SettingsPanel extends JPanel implements ChangeListener, ActionListe
         String difficulty = (String)cb.getSelectedItem();
         switch(difficulty){
         case "Easy":
-        	frame.setHardMode(0);
+        	frame.setDifficulty(0);
         	break;
         case "Medium":
-        	frame.setHardMode(1);
+        	frame.setDifficulty(1);
         	break;
         case "Hard":
-        	frame.setHardMode(2);
+        	frame.setDifficulty(2);
         	break;
         	
         }

@@ -71,6 +71,7 @@ public class InGamePanel extends JPanel{
 			time.stop();
 			pause.setText("Resume");
 		}
+		frame.getPanel().requestFocus();
 		paused = !paused;
 	}
 	
@@ -89,6 +90,9 @@ public class InGamePanel extends JPanel{
 	}
 	public void stopTimerWin(){
 		time.stop();
+	}
+	public boolean getPaused(){
+		return paused;
 	}
 	
 	public float getTime(){

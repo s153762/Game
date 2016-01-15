@@ -71,21 +71,8 @@ public class Highscores {
 	}
 	
 	public void updateArray(){
-//		for(int i = 0; i<10;i++){
-//			for(int j = 1; j<highscores.size();j++){
-//				if(Float.parseFloat(highscores.get(j-1).split(": ")[1]) > Float.parseFloat(highscores.get(j).split(": ")[1]) ){
-//					String temp = highscores.get(j-1);
-//					highscores.set(j-1, highscores.get(j));
-//					highscores.set(j, temp);
-//				}
-//				if(j >= 10){
-//					highscores.remove(j);
-//				}
-//			}
-//		}
-		
 		if (highscores.size() != 0){
-			System.out.println("hej");
+			
 			float valueToInsert = Float.parseFloat(highscores.get(highscores.size()-1).split(": ")[1]);
 			
 			int pointer = highscores.size()-1;

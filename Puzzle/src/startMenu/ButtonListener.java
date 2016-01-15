@@ -22,37 +22,30 @@ public class ButtonListener implements ActionListener{
 		
 		switch(buttonPressed){
 			case "Play": 
-				System.out.println("Play");
 				frame.showGame();
 			break;
 			
 			case "Settings": 
 				frame.showSettings();
-				System.out.println("Settings");
 			break;
 				
 			case "Highscore": 
-				System.out.println("Highscore");
 				frame.showHighscore();
 			break;
 				
 			case "Exit": 
-				System.out.println("Exit");
 				System.exit(0);
 			break;
 			
 			case "Pause":
-				System.out.println("Pause");
 				buttonPanel.pause();
 			break;
 			
 			case "Resume":
-				System.out.println("Pause");
 				buttonPanel.pause();
 			break;
 			
 			case "Back to menu":
-				System.out.println("Back");
 				frame.showMenu();
 			break;
 		}

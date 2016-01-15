@@ -3,6 +3,7 @@ package startMenu;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +21,10 @@ public class HighscorePanel extends JPanel {
 	public HighscorePanel(Frame frame){
 
 		this.setLayout(new BorderLayout());
+		this.setBackground(Color.cyan);
+		
 		JLabel head = new JLabel("Highscores");
+		head.setFont(head.getFont().deriveFont(30f));
 		this.add(head, "North");
 
 		String[] columnNames = {"Highscores in gridsize 3:", "Highscores in gridsize 4:", "Highscores in gridsize 5:"};

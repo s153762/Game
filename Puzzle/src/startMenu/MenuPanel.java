@@ -1,6 +1,8 @@
 package startMenu;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,12 +21,15 @@ public class MenuPanel extends JPanel{
 	
 	public MenuPanel(Frame frame){
 		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.CYAN);
+		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		
 		JLabel head = new JLabel(frame.getN()*frame.getN()-1+" Sliding Puzzle");
-		this.add(head);
+		head.setFont(head.getFont().deriveFont(60f));
+		this.add(head, gbc);
 		
 		ButtonListener buttonList = new ButtonListener(frame);
 		JButton playButton = new JButton("Play");

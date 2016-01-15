@@ -25,8 +25,10 @@ public class Listener implements KeyListener, ActionListener {
 	}
 	
 	public void keyPressed(KeyEvent e){
+		if(!panel.getInGamePanel().getPaused()){
 		int c = e.getKeyCode();
 		model.movement(c);
+		}
 	}
 	
 	@Override
