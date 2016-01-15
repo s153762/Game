@@ -1,43 +1,28 @@
 package game;
 
-import java.util.*;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.BorderFactory;
-//import javax.swing.Timer;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import game.*;
 
 public class Panel extends JPanel {
 	private Model model;
 	private int n;
-	private int x;
-	private int y;
 	private Frame frame;
 	private boolean firstTime;
 	private Listener list;
 	private JLabel[][] puzzleArray;
 	private InGamePanel inGamePanel;
-	Color color; 
+	private Color color; 
 	private int difficulty;
-
-	
+	private Highscores highscoreOver5, highscoreOn4, highscore;
 	
 	public Panel(int n, InGamePanel inGamePanel, Frame frame){
 		
-		this.x = n-1;
-		this.y = n-1;
 		this.n = n;
 		
 		this.frame = frame;
@@ -59,11 +44,13 @@ public class Panel extends JPanel {
 		this.setLayout(gLay);
 		colorOfLabels();
 		
+		//highscores
+		highscoreOver5 = new Highscores("HighscoresOver10.dat");
+		highscoreOn4 = new Highscores("HighscoresOver5.dat");
+		highscore = new Highscores("Highscores.dat");
 		
 		//initializing game
 		model.shuffle();
-		
-		
 		
 	}
 	
@@ -142,21 +129,18 @@ public class Panel extends JPanel {
 		//stopping the timer
 		inGamePanel.stopTimerWin();
 		
-		//updating the highscore and checking the highscore.
+		//updating the highscores and checking the highscore.
 		if(n>=5){
-			Highscores highscoreOver5 = new Highscores("HighscoresOver10.dat");
 			if(highscoreOver5.isNewHighscore(inGamePanel.getTime())){
 				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in over 5! What is your name?");
 				highscoreOver5.addNewHighscore(name, inGamePanel.getTime());
 			}
 		} else if (n==4){
-			Highscores highscoreOn4 = new Highscores("HighscoresOver5.dat");
 			if(highscoreOn4.isNewHighscore(inGamePanel.getTime())){
 				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in over 4! What is your name?");
 				highscoreOn4.addNewHighscore(name, inGamePanel.getTime());
 			}
 		} else{
-			Highscores highscore = new Highscores("Highscores.dat");
 			if(highscore.isNewHighscore(inGamePanel.getTime())){
 				String name = JOptionPane.showInputDialog("You set a new score on the top 10! What is your name?");
 				highscore.addNewHighscore(name, inGamePanel.getTime());
