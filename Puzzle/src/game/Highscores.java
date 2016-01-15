@@ -20,7 +20,7 @@ public class Highscores {
     
 	public Highscores(String fileName){
 		this.fileName = fileName;
-		highscores = readHighscores();
+		this.highscores = readHighscores();
 		updateArray();
 		writeHighscores();
 		
@@ -71,17 +71,34 @@ public class Highscores {
 	}
 	
 	public void updateArray(){
-		for(int i = 0; i<10;i++){
-			for(int j = 1; j<highscores.size();j++){
-				if(Float.parseFloat(highscores.get(j-1).split(": ")[1]) > Float.parseFloat(highscores.get(j).split(": ")[1]) ){
-					String temp = highscores.get(j-1);
-					highscores.set(j-1, highscores.get(j));
-					highscores.set(j, temp);
-				}
-				if(j >= 10){
-					highscores.remove(j);
-				}
+//		for(int i = 0; i<10;i++){
+//			for(int j = 1; j<highscores.size();j++){
+//				if(Float.parseFloat(highscores.get(j-1).split(": ")[1]) > Float.parseFloat(highscores.get(j).split(": ")[1]) ){
+//					String temp = highscores.get(j-1);
+//					highscores.set(j-1, highscores.get(j));
+//					highscores.set(j, temp);
+//				}
+//				if(j >= 10){
+//					highscores.remove(j);
+//				}
+//			}
+//		}
+		
+		if (highscores.size() != 0){
+			System.out.println("hej");
+			float valueToInsert = Float.parseFloat(highscores.get(highscores.size()-1).split(": ")[1]);
+			
+			int pointer = highscores.size()-1;
+			//String temp = highscores.get(pointer);
+			while(pointer> 0 && valueToInsert<Float.parseFloat(highscores.get(pointer-1).split(": ")[1])){
+				String temp = highscores.get(pointer-1);
+				highscores.set(pointer-1, highscores.get(pointer));
+				highscores.set(pointer, temp);
+				pointer--;
 			}
+			if(highscores.size() > 10){
+			highscores.remove(10);
+		}
 		}
 	}
 	
@@ -102,7 +119,6 @@ public class Highscores {
 		} else {
 			return true;
 		}
-		
 	}
 	
 	public void addNewHighscore(String name, float score){

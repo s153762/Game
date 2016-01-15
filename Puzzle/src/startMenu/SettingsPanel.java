@@ -29,12 +29,12 @@ public class SettingsPanel extends JPanel implements ChangeListener, ActionListe
 		String[] difficultyStrings = { "Easy", "Medium", "Hard" };
 		JComboBox<String> difficultyList = new JComboBox<String>(difficultyStrings);
 		this.add(difficultyList, BorderLayout.NORTH);
-	    JSlider slider = new JSlider(JSlider.HORIZONTAL, 3, 100, n);
+	    JSlider slider = new JSlider(JSlider.HORIZONTAL, 3, 20, n);
 	    this.frame = frame;
 	    slider.setPaintLabels(true);
 	    slider.setPaintTicks(true);  
 	    slider.setMinorTickSpacing(1);
-	    slider.setMajorTickSpacing(2);
+	    slider.setMajorTickSpacing(1);
 	
 	    
 		difficultyList.setSelectedIndex(frame.getHardMode());
@@ -45,7 +45,7 @@ public class SettingsPanel extends JPanel implements ChangeListener, ActionListe
 		this.add(backButton, BorderLayout.SOUTH);
 		backButton.addActionListener(buttonList);
 	    // We'll just use the standard numeric labels for now...
-	    slider.setLabelTable(slider.createStandardLabels(5,5));
+	    slider.setLabelTable(slider.createStandardLabels(1,3));
 	    slider.addChangeListener(this);
 	    difficultyList.addActionListener(this);
 	    this.add(slider, BorderLayout.CENTER);

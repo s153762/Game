@@ -1,41 +1,60 @@
 package startMenu;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+
+
+import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import game.Frame;
 import game.Highscores;
 
 public class HighscorePanel extends JPanel {
 	
+	
+	
 	public HighscorePanel(Frame frame){
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridwidth = GridBagConstraints.REMAINDER;
-		
-		headerLabel.setText("Control in action: JTextArea")
-		
-		JLabel score = new JLabel("Highscores");
-		JLabel score5 = new JLabel("Highscores in over gridsize 5");
-		JLabel score10 = new JLabel("Highscores  in over gridsize 10");
+
+		this.setLayout(new BorderLayout());
+		JLabel head = new JLabel("Highscores");
+		this.add(head, "North");
+
+		String[] columnNames = {"Highscores in gridsize 3:", "Highscores in gridsize 4:", "Highscores in gridsize 5:"};
 		
 		Highscores highscore = new Highscores("Highscores.dat");
 		Highscores highscore5 = new Highscores("HighscoresOver5.dat");
 		Highscores highscore10 = new Highscores("HighscoresOver10.dat");
-		JLabel
-
-		
-		
-		
-		
 		ButtonListener buttonList = new ButtonListener(frame);
+		Object[][] data = new Object[10][3];
+		for(int i = 0;i<10;i++){
+			 if(i < highscore.getHighscores().size()){
+				 data[i][0] = highscore.getHighscores().get(i);
+			 }else{
+				 data[i][0] = "";
+			 }
+			 if (i < highscore5.getHighscores().size()){
+				 data[i][1] = highscore5.getHighscores().get(i);
+			 } else{
+				 data[i][1] = "";
+			 }
+			 if (i < highscore10.getHighscores().size()){
+				 data[i][2] = highscore10.getHighscores().get(i);
+			 } else{
+				 data[i][2] = "";
+			 }
+		 }
+		
+		JTable table = new JTable(data, columnNames);
+		JScrollPane tableContainer = new JScrollPane(table);
+		this.add(tableContainer, BorderLayout.CENTER);
+		
+		buttonList = new ButtonListener(frame);
 		JButton backButton = new JButton("Back to menu");
-		this.add(backButton,gbc);
+		this.add(backButton, BorderLayout.SOUTH);
 		backButton.addActionListener(buttonList);
 	}
 

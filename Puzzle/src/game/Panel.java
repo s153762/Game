@@ -51,8 +51,9 @@ public class Panel extends JPanel {
 		GridLayout gLay = new GridLayout(n,n,10-(n/5),10-(n/5));
 		this.setLayout(gLay);
 //		timer.start();
-		model.shuffle();
+		
 		color();
+		model.shuffle();
 		model.setHardMode(hardMode);
 		//model.startShuffle();
 		
@@ -150,17 +151,17 @@ public class Panel extends JPanel {
 		Highscores highscoreOver5 = new Highscores("HighscoresOver5.dat");
 		Highscores highscore = new Highscores("Highscores.dat");
 		
-		if(n>=10){
+		if(n>=5){
 			if(highscoreOver10.isNewHighscore(inGamePanel.getTime())){
-				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in 'OVER10'! What is your name?");
+				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in over 5! What is your name?");
 				highscoreOver10.addNewHighscore(name, inGamePanel.getTime());
 				for(int i = 0; i<highscoreOver10.getHighscores().size();i++){
 					System.out.println(highscoreOver10.getHighscores().get(i));
 				}
 			}
-		} else if (n>=5){
+		} else if (n==4){
 			if(highscoreOver5.isNewHighscore(inGamePanel.getTime())){
-				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in 'OVER5'! What is your name?");
+				String name = JOptionPane.showInputDialog("You set a new score on the top 10 in over 4! What is your name?");
 				highscoreOver5.addNewHighscore(name, inGamePanel.getTime());
 				for(int i = 0; i<highscoreOver5.getHighscores().size();i++){
 					System.out.println(highscoreOver5.getHighscores().get(i));

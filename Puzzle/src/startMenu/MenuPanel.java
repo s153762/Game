@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import startMenu.ButtonListener;
@@ -21,6 +22,9 @@ public class MenuPanel extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		
+		JLabel head = new JLabel(frame.getN()*frame.getN()-1+" Sliding Puzzle");
+		this.add(head);
 		
 		ButtonListener buttonList = new ButtonListener(frame);
 		JButton playButton = new JButton("Play");

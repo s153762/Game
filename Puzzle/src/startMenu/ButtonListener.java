@@ -33,6 +33,7 @@ public class ButtonListener implements ActionListener{
 				
 			case "Highscore": 
 				System.out.println("Highscore");
+				frame.showHighscore();
 			break;
 				
 			case "Exit": 

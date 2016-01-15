@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 
+import startMenu.HighscorePanel;
 import startMenu.MenuPanel;
 import startMenu.SettingsPanel;
 import game.Panel;
@@ -18,7 +19,9 @@ public class Frame extends JFrame {
 	private MenuPanel menuPanel;
 	private SettingsPanel settingsPanel;
 	private InGamePanel inGamePanel;
+	private HighscorePanel highscorePanel;
 	public static double size = 600;
+	
 	
 	public Frame(){
 		
@@ -32,6 +35,7 @@ public class Frame extends JFrame {
 		this.menuPanel = new MenuPanel(this);
 		this.inGamePanel = new InGamePanel(this);
 		this.panel = new Panel(this.n, getInGamePanel(), this);
+		this.highscorePanel = new HighscorePanel(this);
 
 	}
 	
@@ -46,6 +50,7 @@ public class Frame extends JFrame {
 		this.getContentPane().remove(settingsPanel);
 		this.getContentPane().remove(panel);
 		this.getContentPane().remove(getInGamePanel());
+		this.getContentPane().remove(highscorePanel);
 		
 		//this.menuPanel = new MenuPanel(this);
 		this.getContentPane().add(menuPanel, "Center");
@@ -92,6 +97,16 @@ public class Frame extends JFrame {
 		this.revalidate();
 	}
 	
+	public void showHighscore(){
+		this.getContentPane().remove(menuPanel);
+		menuPanel.setVisible(false);
+		menuPanel.setFocusable(false);
+		this.highscorePanel = new HighscorePanel(this);
+		this.getContentPane().add(highscorePanel, "Center");
+		//settingsPanel.setVisible(true);
+		//settingsPanel.setFocusable(false);
+		this.revalidate();
+	}
 
 	public void showIt(){
 		this.setVisible(true);
@@ -117,6 +132,10 @@ public class Frame extends JFrame {
 	public void setN(int n)
 	{
 		this.n=n;
+	}
+	public int getN()
+	{
+		return n;
 	}
 	
 
