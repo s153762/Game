@@ -51,10 +51,10 @@ public class Panel extends JPanel {
 		GridLayout gLay = new GridLayout(n,n,10-(n/5),10-(n/5));
 		this.setLayout(gLay);
 //		timer.start();
-		//model.shuffle();
+		model.shuffle();
 		color();
 		model.setHardMode(hardMode);
-		model.startShuffle();
+		//model.startShuffle();
 		
 		
 	}
