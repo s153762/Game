@@ -1,10 +1,13 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import startMenu.HighscorePanel;
 import startMenu.MenuPanel;
@@ -21,22 +24,33 @@ public class Frame extends JFrame {
 	private InGamePanel inGamePanel;
 	private HighscorePanel highscorePanel;
 	public static double size = 600;
+	private JLabel baggrund;
+	private ImageIcon menuBaggrund;
+	private ImageIcon settingsBaggrund;
+	private ImageIcon highscoreBaggrund;
 	
 	
 	public Frame(){
+		//setting up pictures for background
+		highscoreBaggrund = new ImageIcon("src/images/DTULogoEnhanced.png");
+		settingsBaggrund = new ImageIcon("src/images/settings.jpg");
+		menuBaggrund = new ImageIcon("src/images/puzzlegif.gif");
+		baggrund = new JLabel(menuBaggrund);
 		//constructing frame
 		this.setSize((int) (size*1.25),(int) size);
 		this.setLocation(100,50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle(n*n-1 + " Sliding Puzzle");	
-		this.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout());
+		setContentPane(baggrund);
+		setLayout(new BorderLayout());
 		
 		//making the panels to the frame
-		this.settingsPanel = new SettingsPanel(this,n);
-		this.menuPanel = new MenuPanel(this);
-		this.inGamePanel = new InGamePanel(this);
-		this.panel = new Panel(this.n, getInGamePanel(), this);
-		this.highscorePanel = new HighscorePanel(this);
+		settingsPanel = new SettingsPanel(this,n);
+		menuPanel = new MenuPanel(this);
+		inGamePanel = new InGamePanel(this);
+		panel = new Panel(this.n, getInGamePanel(), this);
+		highscorePanel = new HighscorePanel(this);
 
 	}
 	
@@ -46,10 +60,12 @@ public class Frame extends JFrame {
 		this.getContentPane().remove(panel);
 		this.getContentPane().remove(getInGamePanel());
 		this.getContentPane().remove(highscorePanel);
-		
+		// setting background
+		baggrund.setIcon(menuBaggrund);
 		//showing the menu panel
 		this.setTitle(n*n-1 + " Sliding Puzzle");
-		this.getContentPane().add(menuPanel, "Center");
+		add(menuPanel, "Center");
+		menuPanel.setOpaque(false);
 		menuPanel.setVisible(true);
 		this.revalidate();
 	}
@@ -79,10 +95,12 @@ public class Frame extends JFrame {
 		//hiding the menu panel
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
-		
+		//setting background
+		baggrund.setIcon(settingsBaggrund);
 		//making a new settings panel
-		this.settingsPanel = new SettingsPanel(this,n);
+		settingsPanel = new SettingsPanel(this,n);
 		this.getContentPane().add(settingsPanel, "Center");
+		settingsPanel.setOpaque(false);
 		this.revalidate();
 	}
 	
@@ -90,10 +108,13 @@ public class Frame extends JFrame {
 		//hiding the menu panel
 		menuPanel.setVisible(false);
 		menuPanel.setFocusable(false);
+		//setting background
+		baggrund.setIcon(highscoreBaggrund);
 		
 		//making a new highscore panel
-		this.highscorePanel = new HighscorePanel(this);
+		highscorePanel = new HighscorePanel(this);
 		this.getContentPane().add(highscorePanel, "Center");
+		highscorePanel.setOpaque(false);
 		this.revalidate();
 	}
 

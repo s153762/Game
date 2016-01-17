@@ -7,23 +7,19 @@ public class Listener implements KeyListener, ActionListener {
 	private Model model;
 	private Panel panel;
 	private InGamePanel timePanel;
-	private int n;
-	private int x;
-	private int y;
 	
+	//constructor
 	public Listener(Panel panel, Model model){
 		this.panel = panel;
 		this.model = model;
-		this.x = model.getX();
-		this.y = model.getY();
-		this.n = panel.getN();
-
 	}
 	
+	//constructor
 	public Listener(InGamePanel timePanel){
 		this.timePanel = timePanel;
 	}
 	
+	//sends the key pressed to model.movement (if not paused)
 	public void keyPressed(KeyEvent e){
 		if(!panel.getInGamePanel().getPaused()){
 		int c = e.getKeyCode();
@@ -40,12 +36,11 @@ public class Listener implements KeyListener, ActionListener {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
+	
+	
+	//making the timer
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		timePanel.updatePanel();
-
 	}
 
 
