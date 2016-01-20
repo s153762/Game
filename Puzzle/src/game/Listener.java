@@ -3,56 +3,28 @@ package game;
 import java.awt.event.*;
 import game.*;
 
-public class Listener implements KeyListener{
+public class Listener implements KeyListener, ActionListener {
 	private Model model;
-	private int n;
-	private int x;
-	private int y;
 	private Panel panel;
+	private InGamePanel timePanel;
 	
-	public Listener(Panel panel){
+	//constructor
+	public Listener(Panel panel, Model model){
 		this.panel = panel;
-		this.x = panel.getX();
-		this.y = panel.getY();
-		this.n = panel.getN();
+		this.model = model;
 	}
 	
-	public void keyPressed(KeyEvent e){
-		int c = e.getKeyCode();
-		switch(c){
-		case KeyEvent.VK_UP:
-			if (!(y>n-2)){
-				panel.updateArray(y, x, y+1, x);
-				//if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
-					//if(model.checkWinCondition())
-						//System.out.println("You won!");
-				//}
-			}
-			break;
-		
-		case KeyEvent.VK_DOWN:
-			if (!(y<1)){
-				panel.updateArray(y, x, y-1, x);
-			}
-			break;
-		case KeyEvent.VK_LEFT:
-			if (!(x>n-2)){
-				panel.updateArray(y, x, y, x+1);
-				if(y==n-1 && x==n-1 && panel.PuzzleArray()[n-1][n-2].getText().equals(Integer.toString(n*n-1))){
-					if(model.checkWinCondition())
-						System.out.println("You won!");
-				}
-			}
+	//constructor
+	public Listener(InGamePanel timePanel){
+		this.timePanel = timePanel;
+	}
 	
-			break;
-		case KeyEvent.VK_RIGHT:
-			if (!(x<1)){
-				panel.updateArray(y, x, y, x-1);
-			}
-			break;
-		}	
-		this.x = panel.getX();
-		this.y = panel.getY();
+	//sends the key pressed to model.movement (if not paused)
+	public void keyPressed(KeyEvent e){
+		if(!panel.getInGamePanel().getPaused()){
+		int c = e.getKeyCode();
+		model.movement(c);
+		}
 	}
 	
 	@Override
@@ -64,5 +36,12 @@ public class Listener implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
+	
+	
+	//making the timer
+	public void actionPerformed(ActionEvent e) {
+		timePanel.updatePanel();
+	}
+
 
 }
