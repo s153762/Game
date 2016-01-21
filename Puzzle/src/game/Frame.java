@@ -2,8 +2,6 @@ package game;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;

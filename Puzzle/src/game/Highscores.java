@@ -23,6 +23,7 @@ public class Highscores {
 	}
 	
 	//reading the highscores by using ObjectInputStream and catching errors
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> readHighscores(){
 		highscores = new ArrayList<String>();
 		try {

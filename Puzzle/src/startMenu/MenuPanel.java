@@ -1,7 +1,5 @@
 package startMenu;
 
-
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;

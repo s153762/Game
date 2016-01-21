@@ -1,11 +1,6 @@
 package game;
 
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Random;
-
-import javax.swing.JLabel;
 
 import game.Panel;
 

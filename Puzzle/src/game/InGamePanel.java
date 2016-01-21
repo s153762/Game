@@ -2,9 +2,6 @@ package game;
 
 
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 

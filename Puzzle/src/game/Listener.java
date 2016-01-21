@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.event.*;
-import game.*;
 
 public class Listener implements KeyListener, ActionListener {
 	private Model model;
